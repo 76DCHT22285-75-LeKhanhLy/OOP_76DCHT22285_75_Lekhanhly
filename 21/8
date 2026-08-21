@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+//Khai bao lop
+class NhanVien
+{
+private:
+ string manv;
+ string hoten;
+ string ngaysinh;
+ string diachi;
+
+public:
+ //Phuong thuc nhap
+ void nhap()
+ {
+  cout<<"Nhap ma nhan vien:"
+  getline(cin,manv);
+
+  cout<<"Nhap ho ten:"
+  getline(cin,hoten);
+
+  cout<<"Nhap ngay sinh:"
+  getline(cin,ngaysinh);
+  
+  cout<<"Nhap dia chi:"
+  getline(cin,diachi);
+
+ }
+
+ //Phuong thuc xuat
+ void xuat()
+ {
+  cout<<"Ma nhan vien;"<<manv<<endl;
+  cout<<"Ho ten;"<<hoten<<endl;
+  cout<<"Ngay sinh;"<<ngaysinh<<endl;
+  cout<<"Dia chi;"<<diachi<<endl;
+ }
+};
+
+//Khai bao main()
+int main
+{ 
+ //Khai báo 1 đối tượng là Minh thuộc lớp Nhanvien
+  Nhanvien Minh;
+
+  //Nhập thông tin cho Minh
+  Minh.nhap();
+
+  //Xuất thông tin của Minh
+  Minh.xuat();
+  return 0;
+}

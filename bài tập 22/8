@@ -1,0 +1,101 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    int i;
+
+    // =====================================================
+    // CACH 1: SU DUNG MANG TINH
+    // =====================================================
+
+    cout << "\n========== CACH 1: MANG TINH ==========\n";
+
+    NhanVien dsnv[10];
+
+    // Nhap du lieu cho mang
+    for (i = 0; i < 10; i++)
+    {
+        cout << "\n=== NHAP THONG TIN CHO NHAN VIEN THU "
+             << i + 1 << " ===" << endl;
+
+        dsnv[i].nhap();
+    }
+
+    // Xuat du lieu
+    for (i = 0; i < 10; i++)
+    {
+        cout << "\n=== XUAT THONG TIN NHAN VIEN THU "
+             << i + 1 << " ===" << endl;
+
+        dsnv[i].xuat();
+    }
+
+
+    // =====================================================
+    // CACH 2: SU DUNG MANG DONG VOI TOAN TU NEW
+    // =====================================================
+
+    cout << "\n========== CACH 2: MANG DONG ==========\n";
+
+    NhanVien *dsnv2;
+
+    // Cap phat mang dong 10 phan tu
+    dsnv2 = new NhanVien[10];
+
+    // Nhap du lieu cho mang
+    for (i = 0; i < 10; i++)
+    {
+        cout << "\n=== NHAP THONG TIN CHO NHAN VIEN THU "
+             << i + 1 << " ===" << endl;
+
+        dsnv2[i].nhap();
+    }
+
+    // Xuat du lieu
+    for (i = 0; i < 10; i++)
+    {
+        cout << "\n=== XUAT THONG TIN NHAN VIEN THU "
+             << i + 1 << " ===" << endl;
+
+        dsnv2[i].xuat();
+    }
+
+    // Giai phong bo nho
+    delete[] dsnv2;
+
+
+    // =====================================================
+    // CACH 3: SU DUNG VECTOR
+    // =====================================================
+
+    cout << "\n========== CACH 3: VECTOR ==========\n";
+
+    vector<NhanVien> ds;
+
+    // Nhap 10 nhan vien
+    for (i = 0; i < 10; i++)
+    {
+        NhanVien nv;
+
+        cout << "\n=== NHAP THONG TIN CHO NHAN VIEN THU "
+             << i + 1 << " ===" << endl;
+
+        nv.nhap();
+
+        // Them nhan vien vao vector
+        ds.push_back(nv);
+    }
+
+    // Xuat du lieu
+    for (i = 0; i < ds.size(); i++)
+    {
+        cout << "\n=== XUAT THONG TIN NHAN VIEN THU "
+             << i + 1 << " ===" << endl;
+
+        ds[i].xuat();
+    }
+
+    return 0;
+}

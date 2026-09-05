@@ -94,4 +94,4 @@ int main(){
     for(int i=0;i<n;i++){
         sv.phaithitot(&dssv[i]);
     }
-}
+} 

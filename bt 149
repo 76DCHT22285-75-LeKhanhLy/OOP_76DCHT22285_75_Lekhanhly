@@ -1,0 +1,118 @@
+#include<iostream>
+using namespace std;
+class nguoi{
+	protected:
+		string hoten;
+		int namsinh;
+	pubic:
+//ham tao khong doi
+nguoi ()
+{ hoten ="", namsinh=0;}
+//ham tao co doi
+nguoi (string hoten ,int namsinh)
+{
+	this-> hoten =hoten;
+	this-> namsinh =namsinh;
+}
+	void nhap ()
+{
+		cout<<"Nhap hoten: ";getline(cin,hoten);
+		cout<<"Nhap namsinh: ";cin>>namsinh;
+    cin.ignore();
+}
+	void xuat ()
+{
+	cout<<"hoten :"<<hoten<<endl;
+	cout<<"namsinh :"<<namsinh<<endl;
+}
+};
+class sinh vien: public nguoi{
+	private:
+		string msv;
+		float dtb;
+	public:
+//goi lai ham tao khong doi cua nguoi
+sinh vien ():nguoi(){
+}
+//goi lai han tao co doi cua nguoi
+sinhvien (string hoten, int namsinh, string msv, float dtb): nguoi(string hoten, int namsinh){
+	this->msv =msv;
+	this->dtb =dtb;
+}
+void nhap ()
+{
+	nguoi::nhap();//goi nhap cua lop nguoi, sinhvien duoc ke thua nguoi
+	cout<<"Nhap msv: ";getline(cin,msv);
+	cout<<"Nhap dtb: ";cin>>dtb;
+	cin.ignore();
+}
+void xuat ()
+{
+	nguoi::xuat();
+	cout<<"msv: "<<msv<<endl;
+	cout<<"dtb: "<<dtb<<endl;
+}
+//ham lay diem trung binh
+float getdtb()
+{
+	return dtb;
+}
+};
+int main
+{
+//kiem tra ham tao khong doi
+	cout<<"kiem tra ham tao khong doi"<<endl;
+	Nguoi n1;
+	SinhVien sv1;
+
+	cout<<"Doi tuong Nguoi:"<<endl;
+	n1.xuat();
+
+	cout<<endl;
+
+	cout<<"Doi tuong SinhVien:"<<endl;
+	sv1.xuat();
+//kiem tra ham tao co doi
+	cout<<"n kiem tra ham tao co doi"<<endl;
+    SinhVien sv2("Le Khanh Ly", 2007, "SV75", 8.5);
+		sv2.xuat();
+
+int n;
+  cout<<"\n nhap danh sach sinhvien"<<endl;
+	cout<<"Nhap so luong sinhvien: ";
+	cin>>n;
+  cin.ignore();
+
+//cap phat mang dong
+	SinhVien *ds = new SinhVien[n];
+//nhap danh sach
+	for (int i = 0; i < n; i++)
+{
+	cout<<"\n--- Nhap sinh vien thu "<< i + 1 << " ---" << endl;
+  ds[i].nhap();
+    }
+
+//sap xep giam dan theo diem trung binh
+	for (int i = 0; i < n - 1; i++)
+{
+	for (int j = i + 1; j < n; j++)
+	{
+  if (ds[i].getDiemTB() < ds[j].getDiemTB())
+	  {
+			SinhVien temp = ds[i];
+			ds[i] = ds[j];
+      ds[j] = temp;
+     }
+  }
+}
+//in danh sach sau khi sap xep
+    cout << "\n===== DANH SACH SINH VIEN GIAM DAN THEO DIEM =====" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\n--- Sinh vien thu " << i + 1 << " ---" << endl;
+        ds[i].xuat();
+    }
+//giai phong bo nho
+	delete[] ds;
+	return 0;
+}

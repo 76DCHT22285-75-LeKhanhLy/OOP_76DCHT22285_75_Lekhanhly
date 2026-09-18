@@ -1,0 +1,80 @@
+#include ‹iostream› 
+#include ‹ string› 
+#include ‹limits>
+using namspace std;
+class nguoi:
+{
+protected :
+string hoten; 
+int namsinh;
+public:
+{
+void nhap()
+cout<<"nhap ho ten:";
+getline(cin, hoten) ;
+cout<<"nhap nam sinh:";
+cin>›namsinh; 
+cin. ignore();
+}
+{
+void xuat( )
+cout<<"ho ten： "<< hoten<<endl；
+cout<<"'nam sinh： "<<namsinh<<endl；
+}
+};
+class sinhvien : public nguoi
+{
+private :
+string masv;
+float diemtb;
+public：
+{
+void nhap()
+nguoi: :nhap();
+cout<<"nhap ma sinh vien:";
+getline (cin, masv) ; 
+cout<<"nhap diem tb"; 
+cin>>diem tb; 
+cin. ignore();
+}
+void xuat ()
+{
+nguoi: :nhap();
+cout<<"ma sinh vien：”<<masv<<endl；
+coutくく"diem trung binh："<<diemtb<<endl；
+}
+string getmsv(){
+return msv;
+}
+string gethoten(){
+return hoten;
+}
+};
+int main()
+{
+int n;
+cout<<"nhap so luong sinh vien:";
+cin>> n;
+cin. ignore();
+sinhvien sv[100];
+for (int i=0; i‹n; i++)
+{
+cout<<"nhap sinh vien："＜＜i+1<<"''<<endl；
+sv[i]-nhap();
+}
+string timkiem;
+cout<<"nhap ma sinh vien hoac ho ten sinh vien can tim:";
+getline(cin, timkiem);
+bool timthay = false;
+for (int i=0; i‹n; i++)
+{
+if (sv[i]-getmsv()== timkiem||sv[i] gethoten ()==timkiem){
+cout<<"sinh vien tim thay:"< <endl;
+sv[i]-xuat;
+}
+}
+if (timthay==false){
+cout<<"khong tin thay sinh vien"<<endl;
+}
+return 0;
+}

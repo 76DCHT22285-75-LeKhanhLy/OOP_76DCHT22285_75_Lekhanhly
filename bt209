@@ -1,0 +1,113 @@
+#inlude <iostream>
+#include <string>
+using namespace std
+class monhoc:
+{
+protected:
+    string tenMonHoc;
+    float diemCC;
+    float diemKT;
+    float diemDT;
+public:
+    void nhap()
+    {
+        cout << "Nhap ten mon hoc: ";
+        getline(cin, tenMonHoc);
+
+        cout << "Nhap diem chuyen can: ";
+        cin >> diemCC;
+
+        cout << "Nhap diem kiem tra: ";
+        cin >> diemKT;
+
+        cout << "Nhap diem thi: ";
+        cin >> diemDT;
+    }
+    void xuat()
+    {
+        cout << "Ten mon hoc: " << tenMonHoc << endl;
+        cout << "Diem chuyen can: " << diemCC << endl;
+        cout << "Diem kiem tra: " << diemKT << endl;
+        cout << "Diem thi: " << diemDT << endl;
+    }
+    float tinhDiemHocPhan()
+    {
+        // Gia su:
+        // Chuyen can: 10%
+        // Kiem tra: 20%
+        // Thi: 70%
+        return diemCC * 0.1 + diemKT * 0.2 + diemDT * 0.7;
+    }
+    bool biCamThi()
+    {
+        return (diemCC < 5 || diemKT == 0);
+    }
+};
+
+class SinhVien : public MonHoc
+{
+private:
+    string hoTen;
+    string lop;
+    string maSV;
+public:
+    void nhap()
+    {
+        MonHoc::nhap();
+
+        cout << "Nhap ho ten: ";
+        getline(cin, hoTen);
+
+        cout << "Nhap lop: ";
+        getline(cin, lop);
+
+        cout << "Nhap ma sinh vien: ";
+        getline(cin, maSV);
+
+        cin.ignore();
+    }
+    void xuat()
+    {
+        MonHoc::xuat();
+        cout << "thong tin sinh vien:" << endl;
+        cout << "Ho ten: " << hoten << endl;
+        cout << "Lop: " << lop << endl;
+        cout << "Ma sinh vien: " << maSV << endl;
+        cout << "Diem hoc phan: "
+             << tinhDiemHocPhan() << endl;
+    }
+};
+int main()
+{
+    int n;
+    cout << "Nhap so luong sinh vien: ";
+    cin >> n;
+
+    SinhVien ds[100];
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\sinh vien: " << i + 1
+             << " ";
+        ds[i].nhap();
+    }
+    cout << "danh sach sinh vien: ";
+    for (int i = 0; i < n; i++)
+    {
+        ds[i].xuat();
+    }
+    cout << "sinh vien bi cam thi: ";
+    bool coSV = false;
+    for (int i = 0; i < n; i++)
+    {
+        if (ds[i].biCamThi())
+        {
+            ds[i].xuat();
+            coSV = true;
+        }
+    }
+    if (!coSV)
+    {
+        cout << "Khong co sinh vien nao bi cam thi!" << endl;
+    }
+    return 0;
+}

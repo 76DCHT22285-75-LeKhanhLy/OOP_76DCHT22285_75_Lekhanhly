@@ -1,0 +1,128 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+class SP1
+{
+protected:
+    float phanThuc;
+    float phanAo;
+public:
+    // Hàm tạo không đối
+    SP1()
+    {
+        phanThuc = 0;
+        phanAo = 0;
+    }
+    // Hàm tạo có đối
+    SP1(float thuc, float ao)
+    {
+        phanThuc = thuc;
+        phanAo = ao;
+    }
+    // Hàm nhập số phức
+    void nhap()
+    {
+        cout << "Nhap phan thuc: ";
+        cin >> phanThuc;
+
+        cout << "Nhap phan ao: ";
+        cin >> phanAo;
+    }
+    // Hàm in số phức
+    void xuat()
+    {
+        cout << phanThuc;
+
+        if (phanAo >= 0)
+
+            cout << " + " << phanAo << "i";
+
+        else
+
+            cout << " - " << -phanAo << "i";
+    }
+    // Tính module số phức
+    float module()
+    {
+        return sqrt(
+phanThuc*phanThuc+phanAo*phanAo);
+    }
+};
+class SP2 : public SP1
+{
+public:
+    // Hàm tạo không đối
+    SP2() : SP1()
+    {
+
+    }
+    // Hàm tạo có đối
+    SP2(float thuc, float ao) : SP1(thuc, ao)
+    {
+
+    }
+    // Nạp chồng toán tử =
+    SP2& operator=(const SP2& sp)
+    {
+        if (this != &sp)
+        {
+            phanThuc = sp.phanThuc;
+            phanAo = sp.phanAo;
+        }
+        return *this;
+    }
+    // Nạp chồng toán tử >
+    bool operator>(const SP2& sp)
+    {
+        return this->module() > sp.module();
+    }
+};
+
+int main()
+{
+    int n;
+    cout << "Nhap so luong so phuc (toi da 10): ";
+    cin >> n;
+
+    while (n < 1 || n > 10)
+    {
+        cout << "Nhap lai n (1 <= n <= 10): ";
+        cin >> n;
+    }
+    SP2 ds[10];
+    cout << "nhap danh sach";
+    for (int i = 0; i < n; i++)
+    {
+        cout << "So phuc thu " << i + 1 << " ";
+        ds[i].nhap();
+    }
+    cout << "danh sach ban dau";
+    for (int i = 0; i < n; i++)
+    {
+        cout << "So phuc " << i + 1 << ": ";
+        ds[i].xuat();
+
+        cout << "    | Module = " << ds[i].module() << endl;
+    }
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (ds[i] < ds[j])
+            {
+                SP2 temp = ds[i];
+                ds[i] = ds[j];
+                ds[j] = temp;
+            }
+        }
+    }
+    cout << "danh sach sau khi sao xep";
+    for (int i = 0; i < n; i++)
+    {
+        cout << "So phuc " << i + 1 << ": ";
+        ds[i].xuat();
+
+        cout << "    | Module = " << ds[i].module() << endl;
+    }
+    return 0;
+}
